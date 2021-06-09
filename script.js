@@ -1,5 +1,14 @@
 "use strict";
 
+let listItems = document.querySelectorAll(".card");
+let newDeck = [];
+let deck = document.querySelector(".deck");
+let resetButton = document.querySelector(".reset-button");
+
+listItems.forEach((item) => {
+  newDeck.push(item);
+});
+
 const shuffle = (array) => {
   let currentIndex = array.length,
     temporaryValue,
@@ -14,3 +23,13 @@ const shuffle = (array) => {
   }
   return array;
 };
+
+const shuffleDeck = () => {
+  shuffle(newDeck);
+  deck.innerHTML = "";
+  newDeck.forEach((item) => {
+    deck.append(item);
+  });
+};
+
+resetButton.addEventListener("click", shuffleDeck);
