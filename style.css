@@ -1,0 +1,62 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  height: 100vh;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.timer-score {
+  display: flex;
+  justify-content: space-around;
+}
+
+.deck {
+  background-color: lightgray;
+  border-radius: 20px;
+  margin: 20px;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  /* perspective: 1000px; */
+  align-items: space-between;
+}
+
+.card {
+  list-style: none;
+  width: 28%;
+  height: 100%;
+  margin: 10px;
+}
+
+.card-front,
+.card-back {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.card-front {
+  /* width: auto;
+  height: auto; */
+  background-color: black;
+}
+
+/* .card-back {
+  transform: rotateY(180deg);
+} */
+
+img {
+  width: 100%;
+  height: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+  .card {
+    width: 22%;
+  }
+}
