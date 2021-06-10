@@ -6,6 +6,9 @@ let deck = document.querySelector(".deck");
 let resetButton = document.querySelector(".reset-button");
 let deckArr = document.querySelector(".deckArr");
 let openedCards = [];
+let second = 45;
+let timer = document.querySelector(".timer");
+let interval;
 
 listItems.forEach((item) => {
   newDeck.push(item);
@@ -96,3 +99,17 @@ const enable = () => {
 };
 
 // cardOpen();
+
+//timer
+const startTimer = () => {
+  let myTimer = setInterval(() => {
+    if (second === 0) {
+      clearInterval(myTimer);
+    } else {
+      console.log(second);
+      second--;
+      timer.innerText = `Countdown: ${second}s`;
+    }
+  }, 1000);
+};
+startTimer();
