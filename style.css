@@ -38,6 +38,8 @@ main {
   align-items: center;
   justify-content: center;
   position: relative;
+  transform-style: preserve-3d;
+  transition: all 0.8s ease;
 }
 
 .card-front,
@@ -52,7 +54,7 @@ main {
 }
 
 .card-back {
-  /* transform: rotateY(180deg); */
+  transform: rotateY(180deg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -64,6 +66,9 @@ img {
   max-height: 180px;
 }
 
+.flipCard {
+  transform: rotateY(180deg);
+}
 @media only screen and (min-width: 768px) {
   .card {
     width: 22%;
