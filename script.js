@@ -36,39 +36,63 @@ const shuffleDeck = () => {
 
 resetButton.addEventListener("click", shuffleDeck);
 
+// let thisCard = {};
+
 const flipCard = (e) => {
   if (e.target.classList.contains("card")) {
     e.target.classList.toggle("flipCard");
-  }
-};
-deck.addEventListener("click", flipCard);
-
-// const unFlipCard = () => {};
-
-const cardOpen = () => {
-  openedCards.push(deckArr);
-  let length = openedCards.length;
-  if (length === 2) {
-    if (openedCards[0].type === openedCards[1].type) {
-      matched();
-    } else {
-      unmatched();
+    openedCards.push(e.target);
+    let length = openedCards.length;
+    if (length === 2) {
+      if (openedCards[0].type === openedCards[1].type) {
+        matched();
+      } else {
+        unmatched();
+      }
     }
   }
 };
 
-const matched = () => {
-  openedCards[0].classList.add("match");
-  openedCards[1].classList.add("match");
-  openedCards = [];
-};
+deck.addEventListener("click", flipCard);
 
-const unmatched = () => {
-  openedCards[0].classList.add("unmatched");
-  openedCards[1].classList.add("unmatched");
+// console.dir(thisCard);
+
+// const cardOpen = () => {
+//   openedCards.push(thisCard);
+//   let length = openedCards.length;
+//   if (length === 2) {
+//     if (openedCards[0].type === openedCards[1].type) {
+//       matched();
+//     } else {
+//       unmatched();
+//     }
+//   }
+// };
+
+const matched = () => {
   setTimeout(function () {
-    openedCards[0].classList.remove("flipCard", "unmatched");
-    openedCards[1].classList.remove("flipCard", "unmatched");
+    openedCards[0].classList.add("match");
+    openedCards[1].classList.add("match");
     openedCards = [];
   }, 1500);
 };
+
+const unmatched = () => {
+  disable();
+  setTimeout(function () {
+    openedCards[0].classList.remove("flipCard");
+    openedCards[1].classList.remove("flipCard");
+    enable();
+    openedCards = [];
+  }, 1500);
+};
+
+const disable = () => {
+  deck.removeEventListener("click", flipCard);
+};
+
+const enable = () => {
+  deck.addEventListener("click", flipCard);
+};
+
+// cardOpen();
