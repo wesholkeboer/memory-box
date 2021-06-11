@@ -114,6 +114,7 @@ const winFunction = () => {
   }, 1500);
   secondsTaken = 45 - seconds;
   winTime.innerText = `you completed the space box in ${secondsTaken} seconds`;
+  clearInterval(myTimer);
 };
 
 const unmatched = () => {
