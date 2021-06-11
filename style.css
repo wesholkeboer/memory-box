@@ -11,6 +11,15 @@ main {
   justify-content: center;
 }
 
+h1,
+h2 {
+  font-family: "Lily Script One", cursive;
+  text-align: center;
+}
+
+p {
+  font-family: "Montserrat", sans-serif;
+}
 .start {
   background-color: wheat;
   display: flex;
@@ -22,6 +31,8 @@ main {
   left: 0;
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -37,30 +48,35 @@ main {
   padding: 20px;
   border: 4px solid purple;
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .timer-score {
   display: flex;
   justify-content: space-around;
+  font-family: "Montserrat", sans-serif;
 }
 
 .deck {
   background-color: lightgray;
   border-radius: 20px;
-  margin: 20px;
-  padding: 20px;
+  margin: 10px;
+  padding: 10px;
   display: none;
   flex-wrap: wrap;
   justify-content: space-between;
-  /* perspective: 1000px; */
+  perspective: 1000px;
   align-items: center;
 }
 
 .card {
   list-style: none;
   width: 28%;
-  min-height: 180px;
-  margin: 10px;
+  min-height: 85px;
+  margin: 5px;
   background-color: black;
   display: flex;
   align-items: center;
@@ -100,6 +116,20 @@ img {
 
 .match {
   opacity: 0;
+}
+
+button {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: purple;
+  color: white;
+}
+
+@media only screen and (min-width: 472px) {
+  .card {
+    min-height: 180px;
+  }
 }
 
 @media only screen and (min-width: 768px) {
