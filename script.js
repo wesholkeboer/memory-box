@@ -1,17 +1,23 @@
 "use strict";
 
+let body = document.querySelector("body");
 let listItems = document.querySelectorAll(".card");
 let newDeck = [];
 let deck = document.querySelector(".deck");
 let resetButton = document.querySelector(".reset-button");
 let deckArr = document.querySelector(".deckArr");
 let openedCards = [];
-let second = 45;
+let seconds;
 let timer = document.querySelector(".timer");
 let myTimer;
-let interval;
 let startButton = document.querySelector(".start-button");
-let startModal = document.querySelector(".start-modal");
+let startModal = document.querySelector(".start");
+let failModal = document.querySelector(".fail");
+let winModal = document.querySelector(".win");
+let endModals = document.querySelectorAll(".end");
+let matchCounter = 0;
+let winTime = document.querySelector(".win-time");
+let secondsTaken;
 
 listItems.forEach((item) => {
   newDeck.push(item);
@@ -60,7 +66,7 @@ const reset = () => {
   });
   clearInterval(myTimer);
   startTimer();
-  second = 45;
+  seconds = 45;
 };
 
 resetButton.addEventListener("click", reset);
@@ -82,26 +88,32 @@ const flipCard = (e) => {
 
 deck.addEventListener("click", flipCard);
 
-// console.dir(thisCard);
-
-// const cardOpen = () => {
-//   openedCards.push(thisCard);
-//   let length = openedCards.length;
-//   if (length === 2) {
-//     if (openedCards[0].type === openedCards[1].type) {
-//       matched();
-//     } else {
-//       unmatched();
-//     }
-//   }
-// };
-
 const matched = () => {
   setTimeout(function () {
     openedCards[0].classList.add("match");
     openedCards[1].classList.add("match");
     openedCards = [];
   }, 1500);
+
+  if (matchCounter !== 1) {
+    matchCounter++;
+    if (matchCounter === 1) {
+      setTimeout(function () {
+        winFunction();
+      }, 1500);
+    }
+  } else {
+    winFunction();
+  }
+};
+
+const winFunction = () => {
+  setTimeout(function () {
+    winModal.style.display = "flex";
+    matchCounter === 0;
+  }, 1500);
+  secondsTaken = 45 - seconds;
+  winTime.innerText = `you completed the space box in ${secondsTaken} seconds`;
 };
 
 const unmatched = () => {
@@ -122,17 +134,27 @@ const enable = () => {
   deck.addEventListener("click", flipCard);
 };
 
-// cardOpen();
-
-//timer
 const startTimer = () => {
   myTimer = setInterval(() => {
-    if (second === 0) {
+    if (seconds === 0) {
+      failModal.style.display = "flex";
       clearInterval(myTimer);
     } else {
-      console.log(second);
-      second--;
-      timer.innerText = `Countdown: ${second}s`;
+      seconds--;
+      timer.innerText = `Countdown: ${seconds}s`;
     }
   }, 1000);
 };
+
+const endReset = () => {
+  endModals.forEach((item) => {
+    item.style.display = "none";
+  });
+  reset();
+};
+
+body.addEventListener("click", (e) => {
+  if (e.target.classList.contains("end-button")) {
+    endReset();
+  }
+});
