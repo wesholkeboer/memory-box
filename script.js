@@ -9,6 +9,7 @@ let deckArr = document.querySelector(".deckArr");
 let openedCards = [];
 let seconds;
 let timer = document.querySelector(".timer");
+let score = document.querySelector(".score");
 let myTimer;
 let startButton = document.querySelector(".start-button");
 let startModal = document.querySelector(".start");
@@ -17,6 +18,8 @@ let winModal = document.querySelector(".win");
 let endModals = document.querySelectorAll(".end");
 let matchCounter = 0;
 let winTime = document.querySelector(".win-time");
+let winScore = document.querySelector(".win-score");
+let scoreCounter = 0;
 let secondsTaken;
 
 listItems.forEach((item) => {
@@ -48,6 +51,7 @@ const shuffleDeck = () => {
 
 const start = () => {
   startModal.style.display = "none";
+  resetButton.style.display = "block";
   deck.style.display = "flex";
   reset();
 };
@@ -65,8 +69,12 @@ const reset = () => {
     }
   });
   clearInterval(myTimer);
+  timer.innerText = "countdown: 45s";
+  scoreCounter = 0;
+  score.innerText = "score: 0 big ones";
   startTimer();
   seconds = 45;
+  enable();
 };
 
 resetButton.addEventListener("click", reset);
@@ -89,31 +97,36 @@ const flipCard = (e) => {
 deck.addEventListener("click", flipCard);
 
 const matched = () => {
+  let newScore = 1000 * seconds + Math.floor(Math.random() * 1000);
+  scoreCounter += newScore;
   setTimeout(function () {
     openedCards[0].classList.add("match");
     openedCards[1].classList.add("match");
     openedCards = [];
-  }, 1500);
+    score.innerText = `score: ${scoreCounter} big ones`;
+  }, 1000);
 
-  if (matchCounter !== 1) {
+  if (matchCounter !== 6) {
     matchCounter++;
-    if (matchCounter === 1) {
+    console.log(matchCounter);
+    if (matchCounter === 6) {
       setTimeout(function () {
         winFunction();
-      }, 1500);
+        matchCounter = 0;
+      }, 1000);
+      console.log(matchCounter);
     }
-  } else {
-    winFunction();
   }
 };
 
 const winFunction = () => {
+  disable();
   setTimeout(function () {
     winModal.style.display = "flex";
-    matchCounter === 0;
-  }, 1500);
+  }, 1000);
   secondsTaken = 45 - seconds;
-  winTime.innerText = `you completed the space box in ${secondsTaken} seconds`;
+  winTime.innerText = `you found all matches in ${secondsTaken} seconds`;
+  winScore.innerText = `you earned a score of ${scoreCounter} big ones`;
   clearInterval(myTimer);
 };
 
@@ -124,7 +137,7 @@ const unmatched = () => {
     openedCards[1].classList.remove("flipCard");
     enable();
     openedCards = [];
-  }, 1500);
+  }, 1000);
 };
 
 const disable = () => {
@@ -142,7 +155,7 @@ const startTimer = () => {
       clearInterval(myTimer);
     } else {
       seconds--;
-      timer.innerText = `Countdown: ${seconds}s`;
+      timer.innerText = `countdown: ${seconds}s`;
     }
   }, 1000);
 };
