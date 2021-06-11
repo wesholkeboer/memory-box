@@ -11,7 +11,7 @@ main {
   justify-content: center;
 }
 
-/* .modal {
+.start-modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -21,7 +21,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-} */
+}
 
 .timer-score {
   display: flex;
@@ -33,7 +33,7 @@ main {
   border-radius: 20px;
   margin: 20px;
   padding: 20px;
-  display: flex;
+  display: none;
   flex-wrap: wrap;
   justify-content: space-between;
   /* perspective: 1000px; */

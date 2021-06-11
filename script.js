@@ -8,6 +8,7 @@ let deckArr = document.querySelector(".deckArr");
 let openedCards = [];
 let second = 45;
 let timer = document.querySelector(".timer");
+let myTimer;
 let interval;
 let startButton = document.querySelector(".start-button");
 let startModal = document.querySelector(".start-modal");
@@ -40,7 +41,8 @@ const shuffleDeck = () => {
 };
 
 const start = () => {
-  startModal.setAttribute("display", "none");
+  startModal.style.display = "none";
+  deck.style.display = "flex";
   reset();
 };
 
@@ -49,11 +51,16 @@ startButton.addEventListener("click", start);
 const reset = () => {
   shuffleDeck();
   newDeck.forEach((item) => {
-    if (item.classList.contains("match")) {
+    if (
+      item.classList.contains("match") ||
+      item.classList.contains("flipCard")
+    ) {
       item.classList.remove("match", "flipCard");
     }
   });
+  clearInterval(myTimer);
   startTimer();
+  second = 45;
 };
 
 resetButton.addEventListener("click", reset);
@@ -119,7 +126,7 @@ const enable = () => {
 
 //timer
 const startTimer = () => {
-  let myTimer = setInterval(() => {
+  myTimer = setInterval(() => {
     if (second === 0) {
       clearInterval(myTimer);
     } else {
