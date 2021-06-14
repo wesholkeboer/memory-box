@@ -126,6 +126,7 @@ button {
   position: absolute;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  border-radius: 15px;
 }
 
 .card-front {
@@ -165,7 +166,7 @@ button {
 .reset-button {
   position: relative;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -10%);
   display: none;
 }
 
