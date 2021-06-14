@@ -21,6 +21,7 @@ let winTime = document.querySelector(".win-time");
 let winScore = document.querySelector(".win-score");
 let scoreCounter = 0;
 let secondsTaken;
+// let deckBackground = document.querySelector(".deck-background");
 
 listItems.forEach((item) => {
   newDeck.push(item);
@@ -72,6 +73,7 @@ const reset = () => {
   timer.innerText = "countdown: 45s";
   scoreCounter = 0;
   score.innerText = "score: 0 big ones";
+  openedCards = [];
   startTimer();
   seconds = 45;
   enable();
@@ -80,7 +82,10 @@ const reset = () => {
 resetButton.addEventListener("click", reset);
 
 const flipCard = (e) => {
-  if (e.target.classList.contains("card")) {
+  if (
+    e.target.classList.contains("card") &&
+    !e.target.classList.contains("match")
+  ) {
     e.target.classList.toggle("flipCard");
     openedCards.push(e.target);
     let length = openedCards.length;
@@ -127,7 +132,7 @@ const winFunction = () => {
     winModal.style.display = "flex";
   }, 1000);
   secondsTaken = 45 - seconds;
-  winTime.innerText = `you found all matches in ${secondsTaken} seconds`;
+  winTime.innerText = `all matches were found in ${secondsTaken} seconds`;
   winScore.innerText = `you earned a score of ${scoreCounter} big ones`;
   clearInterval(myTimer);
 };
