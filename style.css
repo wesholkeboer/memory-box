@@ -144,6 +144,7 @@ button {
   width: 100%;
   object-fit: cover;
   max-height: 85px;
+  border-radius: 15px;
 }
 
 .flipCard {
@@ -181,6 +182,7 @@ button {
 
   .card-img {
     max-height: 150px;
+    border-radius: 15px;
   }
 
   .reset-button {
