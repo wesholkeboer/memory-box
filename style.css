@@ -9,6 +9,7 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  height: 70vh;
 }
 
 h1,
@@ -17,12 +18,31 @@ h2 {
   text-align: center;
 }
 
-p {
+p,
+button {
   font-family: "Montserrat", sans-serif;
 }
+
+.header {
+  border: 2px dashed purple;
+  margin: 15px;
+  border-radius: 10px;
+}
+
 .start {
   background-color: wheat;
   display: flex;
+}
+
+.start-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  border: 2px dashed purple;
+  border-radius: 10px;
+  padding: 0 5px 20px 5px;
+  margin: 10px;
 }
 
 .modal {
@@ -35,6 +55,7 @@ p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 .end {
@@ -67,7 +88,7 @@ p {
   padding: 10px;
   display: none;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   perspective: 1000px;
   align-items: center;
 }
@@ -104,10 +125,10 @@ p {
   justify-content: center;
 }
 
-img {
+.card-img {
   width: 100%;
   object-fit: cover;
-  max-height: 180px;
+  max-height: 85px;
 }
 
 .flipCard {
@@ -119,21 +140,54 @@ img {
 }
 
 button {
-  height: 50px;
-  width: 50px;
+  height: 70px;
+  width: 70px;
   border-radius: 50%;
   background-color: purple;
   color: white;
+  font-weight: bold;
+}
+
+.reset-button {
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
 }
 
 @media only screen and (min-width: 472px) {
+  main {
+    height: 80vh;
+  }
+
   .card {
-    min-height: 180px;
+    min-height: 150px;
+  }
+
+  .card-img {
+    max-height: 150px;
+  }
+
+  .reset-button {
+    transform: translate(-50%, -50%);
   }
 }
 
 @media only screen and (min-width: 768px) {
   .card {
     width: 22%;
+    min-height: 200px;
+  }
+
+  .deck {
+    padding: 30px;
+  }
+
+  .card-img {
+    max-height: 200px;
+  }
+
+  .reset-button {
+    transform: translate(-50%, -25%);
   }
 }
