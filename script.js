@@ -85,6 +85,7 @@ const flipCard = (e) => {
     openedCards.push(e.target);
     let length = openedCards.length;
     if (length === 2) {
+      disable();
       if (openedCards[0].type === openedCards[1].type) {
         matched();
       } else {
@@ -97,6 +98,7 @@ const flipCard = (e) => {
 deck.addEventListener("click", flipCard);
 
 const matched = () => {
+  disable();
   let newScore = 1000 * seconds + Math.floor(Math.random() * 1000);
   scoreCounter += newScore;
   setTimeout(function () {
@@ -104,8 +106,8 @@ const matched = () => {
     openedCards[1].classList.add("match");
     openedCards = [];
     score.innerText = `score: ${scoreCounter} big ones`;
+    enable();
   }, 1000);
-
   if (matchCounter !== 6) {
     matchCounter++;
     console.log(matchCounter);
@@ -131,7 +133,6 @@ const winFunction = () => {
 };
 
 const unmatched = () => {
-  disable();
   setTimeout(function () {
     openedCards[0].classList.remove("flipCard");
     openedCards[1].classList.remove("flipCard");
@@ -153,6 +154,7 @@ const startTimer = () => {
     if (seconds === 0) {
       failModal.style.display = "flex";
       clearInterval(myTimer);
+      matchCounter = 0;
     } else {
       seconds--;
       timer.innerText = `countdown: ${seconds}s`;
